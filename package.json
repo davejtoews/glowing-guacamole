@@ -1,0 +1,47 @@
+{
+  "name": "glowing-guacamole",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "lib/",
+  "keywords": [
+    "feathers"
+  ],
+  "license": "MIT",
+  "repository": {},
+  "author": {},
+  "contributors": [],
+  "bugs": {},
+  "engines": {
+    "node": ">= 0.12.0"
+  },
+  "scripts": {
+    "start": "node src/",
+    "jshint": "jshint src/. test/. --config",
+    "mocha": "mocha test/ --compilers js:babel-core/register",
+    "test": "npm run jshint && npm run mocha"
+  },
+  "dependencies": {
+    "babel-core": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "cors": "^2.7.1",
+    "feathers": "^2.0.0-pre.4",
+    "feathers-authentication": "^0.4.1",
+    "feathers-configuration": "^0.1.0",
+    "feathers-errors": "^2.0.1",
+    "feathers-hooks": "^1.0.0-pre.4",
+    "feathers-mongoose": "^3.3.6",
+    "feathers-rest": "^1.2.3",
+    "feathers-socketio": "^1.3.3",
+    "mongoose": "^4.4.6",
+    "serve-favicon": "^2.3.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
+    "request": "^2.69.0"
+  }
+}
