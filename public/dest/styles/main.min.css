@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(https://fonts.gstatic.com/s/lobster/v16/NIaFDq6p6eLpSvtV2DTNDQLUuEpTyoUstqEm5AMlJo4.woff) format("woff");
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format("woff");
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format("woff");
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format("woff");
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  background: #1F3A52;
+  padding: 0.3em 0;
+  overflow: hidden;
+  z-index: 6;
+  height: 8vh;
+}
+.header .content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header .content svg.logo {
+  width: 3em;
+  height: 3em;
+  vertical-align: middle;
+  margin: 0;
+  fill: #8CCA6E;
+}
+.header .content h1 {
+  display: none;
+  font-weight: normal;
+  font-family: "Lobster", "Open Sans", "Helvetica", arial, sans-serif;
+  color: #8CCA6E;
+  margin: 0;
+}
+@media only screen and (min-width: 40em) {
+  .header .content h1 {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+.header .content form {
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.5em;
+  text-align: right;
+  float: right;
+}
+@media only screen and (min-width: 40em) {
+  .header .content form {
+    width: 70%;
+  }
+}
+.header .content form input[type='text'] {
+  width: 75%;
+  border: 0;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+  font-size: 1.2em;
+  height: 1.6em;
+}
+@media only screen and (min-width: 40em) {
+  .header .content form input[type='text'] {
+    width: 80%;
+  }
+}
+.header .content form label {
+  background: #4e88bc;
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  width: 3em;
+  text-align: center;
+  padding-top: 0.5em;
+}
+.header .content form label:hover {
+  background: #73a1ca;
+  cursor: pointer;
+}
+.header .content form label svg {
+  width: 1em;
+  height: 1em;
+  fill: #fff;
+}
+.header .content form label input[type='submit'] {
+  display: none;
+}
+
+.map-container {
+  height: 92vh;
+  width: 100vw;
+}
