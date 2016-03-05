@@ -1,3 +1,5 @@
+import category from './category';
+import business from './business';
 import message from './message';
 import user from './user';
 
@@ -11,4 +13,6 @@ export default function() {
   
   app.configure(message);
   app.configure(user);
+  app.configure(business);
+  app.configure(category);
 }
