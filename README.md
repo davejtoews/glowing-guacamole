@@ -5,7 +5,7 @@
 > glowing-guacamole - 
 
 ## Ingredients
-* Guacamole
+* Avacado
 * Lemon
 * Radium
 * Herbs
