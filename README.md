@@ -1,8 +1,16 @@
-# <%= name %>
+# glowing-guacamole
 
 [![Build Status](https://travis-ci.org/<%= repository %>.png?branch=master)](https://travis-ci.org/<%= repository %>)
 
-> <%= description %>
+> glowing-guacamole - 
+
+## Ingredients
+* Guacamole
+* Lemon
+* Radium
+* Herbs
+* Chili
+* Salt
 
 ## About
 
