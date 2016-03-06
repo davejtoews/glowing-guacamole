@@ -24,11 +24,11 @@ if(!!navigator.geolocation){
 		latitude_var = position.coords.latitude;
 		longitude_var = position.coords.longitude;
 		initmap(latitude_var, longitude_var);
-		markers();
+		markers(latitude_var, longitude_var);
 	});
 } else {
 	initmap(latitude_var, longitude_var);
-	markers();
+	markers(latitude_var, longitude_var);
 }
 
 
@@ -44,14 +44,19 @@ function initmap(latitude_var, longitude_var) {
 	L.marker([latitude_var, longitude_var], {icon: chipIcon}).addTo(map);
 }
 
-function markers(){
-	$.getJSON( "public/test.json", function( data ) {
+function markers(latitude_var, longitude_var){
+	$.getJSON( "/nearme/" + latitude_var + "/" + longitude_var, function( response ) {
 	  var items = [];
-	  console.log(data);
-	  data.forEach(function(datum){
+	  console.log(response);
+	  response.data.forEach(function(datum){
 	  	console.log(datum);
+<<<<<<< HEAD
 	  	L.marker([datum.lat, datum.lon], {icon: businessIcon})
 	  		.bindPopup(datum.details)
+=======
+	  	L.marker([datum.lat, datum.lng])
+	  		.bindPopup(datum.name)
+>>>>>>> master
 	  		.addTo(map);
 	  });
 	 

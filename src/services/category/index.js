@@ -8,8 +8,8 @@ export default function(){
   let options = {
     Model: category,
     paginate: {
-      default: 5,
-      max: 25
+      default: 100,
+      max: 100
     }
   };
 
