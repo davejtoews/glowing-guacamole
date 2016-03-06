@@ -43,6 +43,11 @@ p {
   font-family: "Open Sans", "Helvetica", arial, sans-serif;
 }
 
+.container {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .header {
   width: 100%;
   background: #1F3A52;
@@ -171,7 +176,7 @@ p {
 }
 
 .map-container {
-  height: 92vh;
+  height: 90%;
   width: 100vw;
 }
 .map-container .leaflet-popup-content-wrapper .leaflet-popup-content p {
