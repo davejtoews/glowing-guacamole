@@ -50,13 +50,8 @@ function markers(latitude_var, longitude_var){
 	  console.log(response);
 	  response.data.forEach(function(datum){
 	  	console.log(datum);
-<<<<<<< HEAD
-	  	L.marker([datum.lat, datum.lon], {icon: businessIcon})
-	  		.bindPopup(datum.details)
-=======
 	  	L.marker([datum.lat, datum.lng])
 	  		.bindPopup(datum.name)
->>>>>>> master
 	  		.addTo(map);
 	  });
 	 
