@@ -74,7 +74,7 @@ p {
     vertical-align: middle;
   }
 }
-.header .content form {
+.header .content .input-wrapper {
   display: inline-block;
   vertical-align: middle;
   width: 85%;
@@ -84,11 +84,11 @@ p {
   float: right;
 }
 @media only screen and (min-width: 40em) {
-  .header .content form {
+  .header .content .input-wrapper {
     width: 70%;
   }
 }
-.header .content form input[type='text'] {
+.header .content .input-wrapper input[type='text'] {
   width: 70%;
   border: 0;
   margin: 0 1em 0 0;
@@ -97,11 +97,11 @@ p {
   height: 1.6em;
 }
 @media only screen and (min-width: 40em) {
-  .header .content form input[type='text'] {
+  .header .content .input-wrapper input[type='text'] {
     width: 80%;
   }
 }
-.header .content form label {
+.header .content .input-wrapper label {
   background: #4e88bc;
   display: inline-block;
   vertical-align: middle;
@@ -110,16 +110,16 @@ p {
   text-align: center;
   padding-top: 0.5em;
 }
-.header .content form label:hover {
+.header .content .input-wrapper label:hover {
   background: #73a1ca;
   cursor: pointer;
 }
-.header .content form label svg {
+.header .content .input-wrapper label svg {
   width: 1em;
   height: 1em;
   fill: #fff;
 }
-.header .content form label input[type='submit'] {
+.header .content .input-wrapper label input[type='submit'] {
   display: none;
 }
 
