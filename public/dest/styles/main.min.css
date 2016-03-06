@@ -187,6 +187,12 @@ p {
   cursor: pointer;
   pointer-events: all;
 }
+.map-container .leaflet-popup-content-wrapper .leaflet-popup-content img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 2em;
+  padding: 0 0.5em 0 0;
+}
 .map-container .leaflet-popup-content-wrapper .leaflet-popup-content .population {
   display: inline-block;
 }
