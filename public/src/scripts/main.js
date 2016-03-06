@@ -9,7 +9,7 @@ var chipIcon = L.icon({
     iconUrl: 'public/src/img/chipIcon.png',
     iconSize:     [107, 55], // size of the icon
     iconAnchor:   [54, 53], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [-3, -50] // point from which the popup should open relative to the iconAnchor
 });
 
 var businessIcon = L.icon({
@@ -55,7 +55,9 @@ function initmap(latitude_var, longitude_var) {
 	});
 
 	map = new L.Map('map').addLayer(mapboxTiles).setView(new L.LatLng(latitude_var, longitude_var),15);
-	L.marker([latitude_var, longitude_var], {icon: chipIcon}).addTo(map);
+	L.marker([latitude_var, longitude_var], {icon: chipIcon})
+	.bindPopup('<p class="popup-title"><img src="/public/src/img/profile-pic.png" />rockamole7</p>')
+	.addTo(map);
 }
 
 var businessData = {};
