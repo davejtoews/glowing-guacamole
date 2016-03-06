@@ -25,7 +25,7 @@ app.configure(configuration(join(__dirname, '..')))
   .get('/', function(req, res){
     res.render('index');
   })
-  .get('/nearme/:lat/:lng', function (req, res) {
+  .get('/biznearme/:cat/:lat/:lng', function (req, res) {
     var minLat = Number(req.params.lat) - 0.01;
     var maxLat = Number(req.params.lat) + 0.01;
     var minLng = Number(req.params.lng) - 0.015;
@@ -33,6 +33,7 @@ app.configure(configuration(join(__dirname, '..')))
     app.service('businesses').
       find({query:
         { 
+          categories: req.params.cat,
           lat: {$gt: minLat, $lt: maxLat },
           lng: {$gt: minLng, $lt: maxLng },
           $limit: 100
