@@ -83,7 +83,7 @@ p {
     vertical-align: middle;
   }
 }
-.header .content form {
+.header .content .input-wrapper {
   display: inline-block;
   vertical-align: middle;
   width: 85%;
@@ -93,29 +93,29 @@ p {
   float: right;
 }
 @media only screen and (min-width: 40em) {
-  .header .content form {
+  .header .content .input-wrapper {
     width: 70%;
   }
 }
-.header .content form .awesomplete {
+.header .content .input-wrapper .awesomplete {
   width: 70%;
   vertical-align: middle;
 }
 @media only screen and (min-width: 40em) {
-  .header .content form .awesomplete {
+  .header .content .input-wrapper .awesomplete {
     width: 80%;
   }
 }
-.header .content form .awesomplete mark {
+.header .content .input-wrapper .awesomplete mark {
   background: #8CCA6E;
 }
-.header .content form .awesomplete ul {
+.header .content .input-wrapper .awesomplete ul {
   text-align: left;
 }
-.header .content form .awesomplete ul li {
+.header .content .input-wrapper .awesomplete ul li {
   font-family: "Open Sans", "Helvetica", arial, sans-serif;
 }
-.header .content form input[type='text'] {
+.header .content .input-wrapper input[type='text'] {
   width: 100%;
   border: 0;
   margin: 0 1em 0 0;
@@ -123,7 +123,7 @@ p {
   font-size: 1.2em;
   height: 1.6em;
 }
-.header .content form label {
+.header .content .input-wrapper label {
   background: #4e88bc;
   display: inline-block;
   vertical-align: middle;
@@ -132,16 +132,16 @@ p {
   text-align: center;
   padding-top: 0.5em;
 }
-.header .content form label:hover {
+.header .content .input-wrapper label:hover {
   background: #73a1ca;
   cursor: pointer;
 }
-.header .content form label svg {
+.header .content .input-wrapper label svg {
   width: 1em;
   height: 1em;
   fill: #fff;
 }
-.header .content form label input[type='submit'] {
+.header .content .input-wrapper label input[type='submit'] {
   display: none;
 }
 

@@ -62,7 +62,7 @@ function markers(latitude_var, longitude_var){
 	$.getJSON( "/nearme/" + latitude_var + "/" + longitude_var, function( response ) {
 	  var items = [];
 	  businessData = response.data;
-	  //console.log(businessData);
+
 	  response.data.forEach(function(datum){
 	  	L.marker([datum.lat, datum.lng], {icon: businessIcon})
 	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-business-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
@@ -77,22 +77,50 @@ function openPage(){
 
 }
 
+var categoryData = {};
+
 function getCategories() {
 	$.getJSON( "/categories", function( response ) {
+		categoryData = {};
+
+		response.data.forEach(function(category){
+			categoryData[capitalizeFirstLetter(category.name)] = category._id;
+		});
+		console.log(categoryData);
 		var categories = response.data.map(function(category) {
-			return category.name;
+			return capitalizeFirstLetter(category.name);
 		});
 
-		var input = document.getElementById("category-search");
+		var input = document.getElementById("search-input");
 		new Awesomplete(input, {
-			list: categories
+			list: categories,
+			autoFirst: true
 		});
 	});
+}
 
+function capitalizeFirstLetter(string) {
+	string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 $('a.close-btn').click(function(){
 	$('.single-page').animate({left: '-100%'},350);
 });
 
 getCategories();
+
+function categorySearch() {
+	var inputVal = $("#search-input").val();
+	console.log(categoryData[inputVal])
+}
+
+$("#search-input").keydown(function(evt) {
+    if (evt.keyCode == 13) {
+        categorySearch();
+    }
+});
+
+$("#search-button").click(function() {
+	categorySearch();
+});
 
