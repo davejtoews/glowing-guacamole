@@ -120,12 +120,12 @@ function populateBusinessDetails(businessName, businessAddress, businessCategori
 	$("#business-address").html(businessAddress);
 
 	var listHtml = "";
-	console.log(businessCategories);
 	businessCategories.forEach(function(category) {
 		listHtml += "<li>" + categoryById[category] + "</li>";
 	});
 	$("#business-categories").html(listHtml);
 	$("#event-description").html("");
+	$("#event-date").html("");
 	
 }
 
@@ -135,26 +135,29 @@ function openEventPage(eventId){
 }
 
 function getEventInfo(eventId) {
-	console.log(eventId);
 	var eventName;
 	var eventAddress;
 	var eventDescription;
+	var eventDate;
 
 	eventData.forEach(function(event){
 		if(event._id == eventId) {
 			eventName = event.name;
 			eventAddress = event.address;
 			eventDescription = event.description;
+			eventDate = new Date(event.date);
 		}		
 	});
-	populateEventDetails(eventName, eventAddress, eventDescription);
+	populateEventDetails(eventName, eventAddress, eventDescription, eventDate);
 }
 
-function populateEventDetails(eventName, eventAddress, eventDescription) {
+function populateEventDetails(eventName, eventAddress, eventDescription, eventDate) {
+	var dateString = moment(eventDate).format("d MMM YYYY");
 	$("#business-name").html(eventName);
 	$("#business-address").html(eventAddress);
 	$("#event-description").html(eventDescription);
 	$("#business-categories").html("");
+	$("#event-date").html(dateString);
 }
 
 
@@ -191,7 +194,6 @@ function capitalizeFirstLetter(string) {
 
 function capitalizeFirstLetterOfEveryWord(string) {
 	words = string.split(" ");
-	console.log(words);
 	words = words.map(function(word) {
 		return capitalizeFirstLetter(word);
 	});
