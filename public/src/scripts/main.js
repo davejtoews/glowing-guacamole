@@ -14,9 +14,19 @@ var chipIcon = L.icon({
 
 var businessIcon = L.icon({
     iconUrl: 'public/src/img/businessIcon.png',
-    iconSize:     [108, 83], // size of the icon
-    iconAnchor:   [54, 83], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    shadowUrl: 'public/src/img/businessIconShadow.png',
+    iconSize:     [36, 51], // size of the icon
+    shadowSize:   [38, 51], // size of the shadow
+    iconAnchor:   [36, 51], // point of the icon which will correspond to marker's location
+    shadowAnchor: [24, 50],  // the same for the shadow
+    popupAnchor:  [-18, -45] // point from which the popup should open relative to the iconAnchor
+});
+
+var eventIcon = L.icon({
+	iconUrl: 'public/src/img/partyIcon.png',
+	iconSize: [130, 57],
+	iconAnchor: [66, 57],
+	popupAnchor: [-3, -76]
 });
 
 if(!!navigator.geolocation){
@@ -40,7 +50,7 @@ function initmap(latitude_var, longitude_var) {
     attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	});
 
-	map = new L.Map('map').addLayer(mapboxTiles).setView(new L.LatLng(latitude_var, longitude_var),17);
+	map = new L.Map('map').addLayer(mapboxTiles).setView(new L.LatLng(latitude_var, longitude_var),15);
 	L.marker([latitude_var, longitude_var], {icon: chipIcon}).addTo(map);
 }
 
@@ -50,8 +60,8 @@ function markers(latitude_var, longitude_var){
 	  console.log(response);
 	  response.data.forEach(function(datum){
 	  	console.log(datum);
-	  	L.marker([datum.lat, datum.lng])
-	  		.bindPopup(datum.name)
+	  	L.marker([datum.lat, datum.lng], {icon: businessIcon})
+	  		.bindPopup('<p>' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
 	  		.addTo(map);
 	  });
 	 

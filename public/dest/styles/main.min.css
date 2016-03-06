@@ -39,11 +39,14 @@ body {
   height: 100%;
 }
 
+p {
+  font-family: "Open Sans", "Helvetica", arial, sans-serif;
+}
+
 .header {
   width: 100%;
   background: #1F3A52;
   padding: 0.3em 0;
-  overflow: hidden;
   z-index: 6;
   height: 4em;
 }
@@ -123,4 +126,20 @@ body {
 .map-container {
   height: 92vh;
   width: 100vw;
+}
+.map-container .leaflet-popup-content-wrapper .leaflet-popup-content p {
+  display: inline-block;
+  padding-right: 3em;
+  font-weight: bold;
+  color: #1F3A52;
+}
+.map-container .leaflet-popup-content-wrapper .leaflet-popup-content .population {
+  display: inline-block;
+}
+.map-container .leaflet-popup-content-wrapper .leaflet-popup-content .population svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  fill: #8CCA6E;
 }
