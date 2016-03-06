@@ -54,9 +54,22 @@ function markers(latitude_var, longitude_var){
 	  		.bindPopup(datum.name)
 	  		.addTo(map);
 	  });
-	 
+	});
+}
+
+function getCategories() {
+	$.getJSON( "/categories", function( response ) {
+		var categories = response.data.map(function(category) {
+			return category.name;
+		});
+
+		var input = document.getElementById("category-search");
+		new Awesomplete(input, {
+			list: categories
+		});
 	});
 
-
 }
+
+getCategories();
 
