@@ -90,7 +90,7 @@ function eventsMarkers(latitude_var, longitude_var){
 	});
 }
 
-function openPage(){
+function openPage(businessId){
 	$('.single-page').animate({left: '3%'},350);
 	var buisinessInfo = getBusinessInfo(businessId);
 
@@ -103,7 +103,7 @@ function getBusinessInfo(businessId) {
 
 	businessData.forEach(function(business){
 		if(business._id == businessId) {
-			businessName = business.name;
+			businessName = capitalizeFirstLetterOfEveryWord(business.name);
 			businessAddress = business.address;
 			businessCategories = business.categories;
 		}
@@ -115,7 +115,14 @@ function getBusinessInfo(businessId) {
 function populateBusinessDetails(businessName, businessAddress, businessCategories) {
 	$("#business-name").html(businessName);
 	$("#business-address").html(businessAddress);
-	console.log(categoryById);
+
+	var listHtml = "";
+	console.log(businessCategories);
+	businessCategories.forEach(function(category) {
+		listHtml += "<li>" + categoryById[category] + "</li>";
+	});
+	$("#business-categories").html(listHtml);
+	
 }
 
 var categoryByName = {};
@@ -148,6 +155,16 @@ function capitalizeFirstLetter(string) {
 	string = string.toLowerCase();
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+function capitalizeFirstLetterOfEveryWord(string) {
+	words = string.split(" ");
+	console.log(words);
+	words = words.map(function(word) {
+		return capitalizeFirstLetter(word);
+	});
+    return words.join(" ");
+}
+
 $('a.close-btn').click(function(){
 	$('.single-page').animate({left: '-100%'},350);
 });
