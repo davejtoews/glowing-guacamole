@@ -28,8 +28,8 @@ app.configure(configuration(join(__dirname, '..')))
   .get('/nearme/:lat/:lng', function (req, res) {
     var minLat = Number(req.params.lat) - 0.01;
     var maxLat = Number(req.params.lat) + 0.01;
-    var minLng = Number(req.params.lng) - 0.03;
-    var maxLng = Number(req.params.lng) + 0.03;
+    var minLng = Number(req.params.lng) - 0.015;
+    var maxLng = Number(req.params.lng) + 0.015;
     app.service('businesses').
       find({query:
         { 
