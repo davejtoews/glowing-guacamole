@@ -46,9 +46,7 @@ p {
 .header {
   width: 100%;
   background: #1F3A52;
-  padding: 0.3em 0;
-  z-index: 6;
-  height: 4em;
+  padding: 0.5em 0;
 }
 .header .content {
   max-width: 1200px;
