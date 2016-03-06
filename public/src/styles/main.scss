@@ -83,6 +83,17 @@ p{
 	.content{
 		max-width:1200px;
 		margin:0 auto;
+		a{
+			&:hover{
+				text-decoration: none;
+				h1{
+					color:lighten($secondColor, 10);
+				}
+				svg{
+					fill:lighten($secondColor, 10);
+				}
+			}
+		}
 		svg.logo{
 			width:3em;
 			height:3em;
@@ -112,16 +123,30 @@ p{
 			@include bp-medium{
 				width:70%;
 			}
-			input[type='text']{
+			.awesomplete{
 				width:70%;
+				vertical-align: middle;
+				@include bp-medium{
+					width:80%;
+				}
+				mark{
+					background:$secondColor;
+				}
+				ul{
+					text-align: left;
+					li{
+						font-family:$paragraphFont;
+					}
+				}
+			}
+			input[type='text']{
+				width:100%;;
 				border:0;
 				margin:0 1em 0 0;
 				vertical-align: middle;
 				font-size:1.2em;
 				height:1.6em;
-				@include bp-medium{
-					width:80%;
-				}
+				
 			}
 			label{
 				background:lighten($mainColor, 30);
@@ -150,6 +175,32 @@ p{
 		}
 	}
 }
+.single-page{
+	position:absolute;
+	top:5em;
+	left:-100%;
+	background:transparentize($mainColor, 0.1);
+	color:$secondColor;
+	z-index:1050;
+	padding:1em;
+	width:94%;
+	a.close-btn{
+		float:right;
+		font-family: $paragraphFont;
+		padding:0.2em 0.5em;
+		border:1px solid $secondColor;
+		color:$secondColor;
+		text-decoration: none;
+		&:hover{
+			color:$mainColor;
+			background:$secondColor;
+		}
+	}
+	h2{
+		font-family: $headFont;
+		font-weight:normal;
+	}
+}
 .map-container{
 	height:92vh;
 	width:100vw;
@@ -160,6 +211,8 @@ p{
 				padding-right:3em;
 				font-weight:bold;
 				color:$mainColor;
+				cursor:pointer;
+				pointer-events:all;
 			}
 			.population{
 				display:inline-block;

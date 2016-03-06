@@ -29,6 +29,8 @@ var eventIcon = L.icon({
 	popupAnchor: [-3, -76]
 });
 
+
+
 if(!!navigator.geolocation){
 	navigator.geolocation.getCurrentPosition(function(position){
 		latitude_var = position.coords.latitude;
@@ -54,15 +56,25 @@ function initmap(latitude_var, longitude_var) {
 	L.marker([latitude_var, longitude_var], {icon: chipIcon}).addTo(map);
 }
 
+var businessData = {};
+
 function markers(latitude_var, longitude_var){
 	$.getJSON( "/nearme/" + latitude_var + "/" + longitude_var, function( response ) {
 	  var items = [];
+	  businessData = response.data;
+
 	  response.data.forEach(function(datum){
 	  	L.marker([datum.lat, datum.lng], {icon: businessIcon})
-	  		.bindPopup('<p>' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
-	  		.addTo(map);
+	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-business-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
+	  		.addTo(map);     
 	  });
 	});
+}
+
+function openPage(){
+	//console.log('danks');
+	$('.single-page').animate({left: '3%'},350);
+
 }
 
 var categoryData = {};
@@ -91,6 +103,9 @@ function capitalizeFirstLetter(string) {
 	string = string.toLowerCase();
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+$('a.close-btn').click(function(){
+	$('.single-page').animate({left: '-100%'},350);
+});
 
 getCategories();
 
