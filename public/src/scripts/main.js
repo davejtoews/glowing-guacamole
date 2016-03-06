@@ -123,6 +123,7 @@ function populateBusinessDetails(businessName, businessAddress, businessCategori
 		listHtml += "<li>" + categoryById[category] + "</li>";
 	});
 	$("#business-categories").html(listHtml);
+	$("#event-description").html("");
 	
 }
 
@@ -151,6 +152,7 @@ function populateEventDetails(eventName, eventAddress, eventDescription) {
 	$("#business-name").html(eventName);
 	$("#business-address").html(eventAddress);
 	$("#event-description").html(eventDescription);
+	$("#business-categories").html("");
 }
 
 
