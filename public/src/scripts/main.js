@@ -24,9 +24,12 @@ var businessIcon = L.icon({
 
 var eventIcon = L.icon({
 	iconUrl: 'public/src/img/partyIcon.png',
-	iconSize: [130, 57],
-	iconAnchor: [66, 57],
-	popupAnchor: [-3, -76]
+	shadowUrl: 'public/src/img/partyIconShadow.png',
+	iconSize: [40, 38],
+	shadowSize:   [47, 37],
+	iconAnchor: [20, 36],
+	shadowAnchor: [10, 36],
+	popupAnchor: [-1, -34]
 });
 
 
@@ -35,11 +38,11 @@ if(!!navigator.geolocation){
 		latitude_var = position.coords.latitude;
 		longitude_var = position.coords.longitude;
 		initmap(latitude_var, longitude_var);
-		//markers(latitude_var, longitude_var);
+		eventsMarkers(latitude_var, longitude_var);
 	});
 } else {
 	initmap(latitude_var, longitude_var);
-	//markers(latitude_var, longitude_var);
+	eventsMarkers(latitude_var, longitude_var);
 }
 
 
@@ -73,6 +76,19 @@ function businessMarkers(categoryId, latitude_var, longitude_var){
 	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-business-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
 	  		.addTo(map);
   		businessMarkerArray.push(businessMarker);     
+	  });
+	});
+}
+
+function eventsMarkers(latitude_var, longitude_var){
+	$.getJSON( "/eventsnearme/" + latitude_var + "/" + longitude_var, function( response ) {
+	  var items = [];
+	  eventData = response.data;
+
+	  response.data.forEach(function(datum){
+	  	L.marker([datum.lat, datum.lng], {icon: eventIcon})
+	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-event-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
+	  		.addTo(map);     
 	  });
 	});
 }
