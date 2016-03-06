@@ -33,7 +33,6 @@ var eventIcon = L.icon({
 });
 
 
-
 if(!!navigator.geolocation){
 	navigator.geolocation.getCurrentPosition(function(position){
 		latitude_var = position.coords.latitude;
@@ -60,16 +59,23 @@ function initmap(latitude_var, longitude_var) {
 }
 
 var businessData = {};
+var businessMarkerArray = new Array();
 
-function businessMarkers(latitude_var, longitude_var){
-	$.getJSON( "/nearme/" + latitude_var + "/" + longitude_var, function( response ) {
+function businessMarkers(categoryId, latitude_var, longitude_var){
+	console.log("damint");
+	$.getJSON( "/biznearme/" + categoryId + "/" + latitude_var + "/" + longitude_var, function( response ) {
 	  var items = [];
 	  businessData = response.data;
-
+	  console.log("helo" + businessMarkerArray);
+	  businessMarkerArray.forEach(function(businessMarker){
+	  	console.log(businessMarker);
+	  	map.removeLayer(businessMarker);
+	  });
 	  response.data.forEach(function(datum){
-	  	L.marker([datum.lat, datum.lng], {icon: businessIcon})
+	  	businessMarker = new L.marker([datum.lat, datum.lng], {icon: businessIcon})
 	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-business-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
-	  		.addTo(map);     
+	  		.addTo(map);
+  		businessMarkerArray.push(businessMarker);     
 	  });
 	});
 }
@@ -127,7 +133,9 @@ getCategories();
 
 function categorySearch() {
 	var inputVal = $("#search-input").val();
-	console.log(categoryData[inputVal])
+	categoryId = categoryData[inputVal];
+	console.log(categoryId);
+	businessMarkers(categoryId, latitude_var, longitude_var);
 }
 
 $("#search-input").keydown(function(evt) {
