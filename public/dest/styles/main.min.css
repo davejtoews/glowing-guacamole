@@ -45,7 +45,7 @@ body {
   padding: 0.3em 0;
   overflow: hidden;
   z-index: 6;
-  height: 8vh;
+  height: 4em;
 }
 .header .content {
   max-width: 1200px;
@@ -74,7 +74,7 @@ body {
 .header .content form {
   display: inline-block;
   vertical-align: middle;
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   padding: 0.5em;
   text-align: right;
@@ -86,7 +86,7 @@ body {
   }
 }
 .header .content form input[type='text'] {
-  width: 75%;
+  width: 70%;
   border: 0;
   margin: 0 1em 0 0;
   vertical-align: middle;
