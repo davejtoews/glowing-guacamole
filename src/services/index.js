@@ -1,3 +1,4 @@
+import event from './event';
 import category from './category';
 import business from './business';
 import message from './message';
@@ -15,4 +16,5 @@ export default function() {
   app.configure(user);
   app.configure(business);
   app.configure(category);
+  app.configure(event);
 }

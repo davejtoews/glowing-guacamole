@@ -41,6 +41,22 @@ app.configure(configuration(join(__dirname, '..')))
          res.json(results);
       });
   })
+  .get('/eventsnearme/:lat/:lng', function (req, res) {
+    var minLat = Number(req.params.lat) - 0.01;
+    var maxLat = Number(req.params.lat) + 0.01;
+    var minLng = Number(req.params.lng) - 0.015;
+    var maxLng = Number(req.params.lng) + 0.015;
+    app.service('events').
+      find({query:
+        { 
+          lat: {$gt: minLat, $lt: maxLat },
+          lng: {$gt: minLng, $lt: maxLng },
+          $limit: 100
+        }
+      }).then(function(results) {
+         res.json(results);
+      });
+  })
   .engine('handlebars', expressHandle({defaultLayout:'main'}))
   .set('view engine', 'handlebars')
   .use(bodyParser.json())
