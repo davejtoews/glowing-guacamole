@@ -70,12 +70,14 @@ function businessMarkers(categoryId, latitude_var, longitude_var){
 	  });
 	  response.data.forEach(function(datum){
 	  	businessMarker = new L.marker([datum.lat, datum.lng], {icon: businessIcon})
-	  		.bindPopup('<p class="popup-title" onClick="openPage(\''+ datum._id +'\');" >' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
+	  		.bindPopup('<p class="popup-title" onClick="openBusinessPage(\''+ datum._id +'\');" >' + datum.name + '</p>')
 	  		.addTo(map);
   		businessMarkerArray.push(businessMarker);     
 	  });
 	});
 }
+
+var eventData = {};
 
 function eventsMarkers(latitude_var, longitude_var){
 	$.getJSON( "/eventsnearme/" + latitude_var + "/" + longitude_var, function( response ) {
@@ -84,16 +86,15 @@ function eventsMarkers(latitude_var, longitude_var){
 
 	  response.data.forEach(function(datum){
 	  	L.marker([datum.lat, datum.lng], {icon: eventIcon})
-	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-event-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
+	  		.bindPopup('<p class="popup-title" onClick="openEventPage(\''+ datum._id +'\');" >' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
 	  		.addTo(map);     
 	  });
 	});
 }
 
-function openPage(businessId){
+function openBusinessPage(businessId){
 	$('.single-page').animate({left: '3%'},350);
-	var buisinessInfo = getBusinessInfo(businessId);
-
+	getBusinessInfo(businessId);
 }
 
 function getBusinessInfo(businessId) {
@@ -124,6 +125,34 @@ function populateBusinessDetails(businessName, businessAddress, businessCategori
 	$("#business-categories").html(listHtml);
 	
 }
+
+function openEventPage(eventId){
+	$('.single-page').animate({left: '3%'},350);
+	getEventInfo(eventId);
+}
+
+function getEventInfo(eventId) {
+	console.log(eventId);
+	var eventName;
+	var eventAddress;
+	var eventDescription;
+
+	eventData.forEach(function(event){
+		if(event._id == eventId) {
+			eventName = event.name;
+			eventAddress = event.address;
+			eventDescription = event.description;
+		}		
+	});
+	populateEventDetails(eventName, eventAddress, eventDescription);
+}
+
+function populateEventDetails(eventName, eventAddress, eventDescription) {
+	$("#business-name").html(eventName);
+	$("#business-address").html(eventAddress);
+	$("#event-description").html(eventDescription);
+}
+
 
 var categoryByName = {};
 var categoryById = {};
