@@ -62,18 +62,15 @@ var businessData = {};
 var businessMarkerArray = new Array();
 
 function businessMarkers(categoryId, latitude_var, longitude_var){
-	console.log("damint");
 	$.getJSON( "/biznearme/" + categoryId + "/" + latitude_var + "/" + longitude_var, function( response ) {
 	  var items = [];
 	  businessData = response.data;
-	  console.log("helo" + businessMarkerArray);
 	  businessMarkerArray.forEach(function(businessMarker){
-	  	console.log(businessMarker);
 	  	map.removeLayer(businessMarker);
 	  });
 	  response.data.forEach(function(datum){
 	  	businessMarker = new L.marker([datum.lat, datum.lng], {icon: businessIcon})
-	  		.bindPopup('<p class="popup-title" onClick="openPage();" data-business-id="'+ datum._id +'">' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
+	  		.bindPopup('<p class="popup-title" onClick="openPage(\''+ datum._id +'\');" >' + datum.name + '</p><div class="population"><svg><use xlink:href="#users"></use></svg>22</div>')
 	  		.addTo(map);
   		businessMarkerArray.push(businessMarker);     
 	  });
@@ -94,21 +91,47 @@ function eventsMarkers(latitude_var, longitude_var){
 }
 
 function openPage(){
-	//console.log('danks');
 	$('.single-page').animate({left: '3%'},350);
+	var buisinessInfo = getBusinessInfo(businessId);
 
 }
 
-var categoryData = {};
+function getBusinessInfo(businessId) {
+	var businessName;
+	var businessAddress;
+	var businessCategories;
+
+	businessData.forEach(function(business){
+		if(business._id == businessId) {
+			businessName = business.name;
+			businessAddress = business.address;
+			businessCategories = business.categories;
+		}
+	});
+
+	populateBusinessDetails(businessName, businessAddress, businessCategories);
+}
+
+function populateBusinessDetails(businessName, businessAddress, businessCategories) {
+	$("#business-name").html(businessName);
+	$("#business-address").html(businessAddress);
+	console.log(categoryById);
+}
+
+var categoryByName = {};
+var categoryById = {};
 
 function getCategories() {
 	$.getJSON( "/categories", function( response ) {
-		categoryData = {};
 
 		response.data.forEach(function(category){
-			categoryData[capitalizeFirstLetter(category.name)] = category._id;
+			categoryByName[capitalizeFirstLetter(category.name)] = category._id;
 		});
-		console.log(categoryData);
+
+		response.data.forEach(function(category){
+			categoryById[category._id] = capitalizeFirstLetter(category.name);
+		});
+
 		var categories = response.data.map(function(category) {
 			return capitalizeFirstLetter(category.name);
 		});
@@ -133,8 +156,7 @@ getCategories();
 
 function categorySearch() {
 	var inputVal = $("#search-input").val();
-	categoryId = categoryData[inputVal];
-	console.log(categoryId);
+	categoryId = categoryByName[inputVal];
 	businessMarkers(categoryId, latitude_var, longitude_var);
 }
 
