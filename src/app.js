@@ -25,6 +25,22 @@ app.configure(configuration(join(__dirname, '..')))
   .get('/', function(req, res){
     res.render('index');
   })
+  .get('/nearme/:lat/:lng', function (req, res) {
+    var minLat = Number(req.params.lat) - 0.01;
+    var maxLat = Number(req.params.lat) + 0.01;
+    var minLng = Number(req.params.lng) - 0.03;
+    var maxLng = Number(req.params.lng) + 0.03;
+    app.service('businesses').
+      find({query:
+        { 
+          lat: {$gt: minLat, $lt: maxLat },
+          lng: {$gt: minLng, $lt: maxLng },
+          $limit: 100
+        }
+      }).then(function(results) {
+         res.json(results);
+      });
+  })
   .engine('handlebars', expressHandle({defaultLayout:'main'}))
   .set('view engine', 'handlebars')
   .use(bodyParser.json())
@@ -35,5 +51,6 @@ app.configure(configuration(join(__dirname, '..')))
   .configure(feathersAuth(app.get('auth').local))
   .configure(services)
   .configure(middleware);
+
 
 export default app;

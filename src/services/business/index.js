@@ -9,7 +9,7 @@ export default function(){
     Model: business,
     paginate: {
       default: 5,
-      max: 25
+      max: 100
     }
   };
 
